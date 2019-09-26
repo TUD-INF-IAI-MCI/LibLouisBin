@@ -48,7 +48,7 @@ compile_gcc() {
     make clean
     make install # "$MAKE_FLAGS" # mingw64 currently has some problems with multiple jobs (-j8), so this is currently disabled
 
-    install -s "$TEMP_DIR/$SUB_DIR/install/$LIB_FILE" "$LIB_DIR/$SUB_DIR"
+    install -D -s "$TEMP_DIR/$SUB_DIR/install/$LIB_FILE" "$LIB_DIR/$SUB_DIR"
 }
 
 compile_linux_x86_64() {
