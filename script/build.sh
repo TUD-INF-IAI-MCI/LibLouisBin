@@ -36,10 +36,19 @@ fetch_source() {
 # param 1: cross toolchain id
 # param 2: sub dir
 # param 3: lib file to export
+# param 4: strip?
+# param 5: CC to use
 compile_gcc() {
     CROSS_ID="$1"
     SUB_DIR="$2"
     LIB_FILE="$3"
+    STRIP="$4"
+    export CC="$5"
+
+    echo ""
+    echo "--------------------------------------------------------------------------------"
+    echo "Staring build for $CROSS_ID"
+    echo "--------------------------------------------------------------------------------"
 
     mkdir -p "$TEMP_DIR/$SUB_DIR/src"
     cd "$TEMP_DIR/$SUB_DIR/src"
@@ -48,15 +57,23 @@ compile_gcc() {
     make clean
     make install # "$MAKE_FLAGS" # mingw64 currently has some problems with multiple jobs (-j8), so this is currently disabled
 
-    install -s -D "$TEMP_DIR/$SUB_DIR/install/$LIB_FILE" -t "$LIB_DIR/$SUB_DIR"
+    if [ $4 == "true" ]; then
+        install -s -D "$TEMP_DIR/$SUB_DIR/install/$LIB_FILE" -t "$LIB_DIR/$SUB_DIR"
+    else
+        install -D "$TEMP_DIR/$SUB_DIR/install/$LIB_FILE" -t "$LIB_DIR/$SUB_DIR"
+    fi
 }
 
 compile_linux_x86_64() {
-    compile_gcc "x86_64-pc-linux-gnu" "x86_64/linux" "lib/liblouis.so"
+    compile_gcc "x86_64-pc-linux-gnu" "x86_64/linux" "lib/liblouis.so" "true" "gcc"
 }
 
 compile_windows_x86_64() {
-    compile_gcc "x86_64-w64-mingw32" "x86_64/win32" "bin/liblouis.dll"
+    compile_gcc "x86_64-w64-mingw32" "x86_64/win32" "bin/liblouis.dll" "true" "x86_64-w64-mingw32-gcc"
+}
+
+compile_apple_osx() {
+    compile_gcc "x86_64-apple-darwin17" "x86_64/osx" "lib/liblouis.dylib" "false" "o64-clang"
 }
 
 
@@ -75,3 +92,4 @@ echo "Using makeflags: \"$MAKE_FLAGS\""
 fetch_source
 compile_linux_x86_64
 compile_windows_x86_64
+compile_apple_osx
