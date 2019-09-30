@@ -72,6 +72,10 @@ compile_windows_x86_64() {
     compile_gcc "x86_64-w64-mingw32" "x86_64/win32" "bin/liblouis.dll" "true" "x86_64-w64-mingw32-gcc"
 }
 
+compile_windows_x86_32() {
+    compile_gcc "i686-w64-mingw32" "x86_32/win32" "bin/liblouis.dll" "true" "i686-w64-mingw32-gcc"
+}
+
 compile_apple_osx() {
     compile_gcc "x86_64-apple-darwin17" "x86_64/osx" "lib/liblouis.dylib" "false" "o64-clang"
 }
@@ -92,4 +96,5 @@ echo "Using makeflags: \"$MAKE_FLAGS\""
 fetch_source
 compile_linux_x86_64
 compile_windows_x86_64
+compile_windows_x86_32
 compile_apple_osx
