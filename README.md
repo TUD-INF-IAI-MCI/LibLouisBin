@@ -23,10 +23,12 @@ would look like this:
 ├── bin
 │   ├── x86_32
 │   │   └── win32
+│   │       └── liblouis.dll
 │   └── x86_64
 │       ├── linux
 │       │   └── liblouis.so
 │       ├── osx
+│       │   └── liblouis.dylib
 │       └── win32
 │           └── liblouis.dll
 ├── README.md
@@ -35,4 +37,7 @@ would look like this:
 
 ```
 
-The script `script/build.sh` will compile libraries for both Linux and Windows for 64 bit systems on a 64 bit linux system - required you have a working native `gcc` and `x86_64-w64-mingw32` toolchain installed.
+The script [script/build.sh](script/build.sh) will compile libraries for both Linux and Windows for 64 bit systems and for 32 bit windows on a 64 bit linux system - required you have a working native `x86_64-pc-linux-gnu`, and `x86_64-w64-mingw32` cross compiler toolchain installed.
+In order to build libraries for OSX, a related compiler toolchain has to be installed.
+
+See [the build script](script/build.sh) for details.

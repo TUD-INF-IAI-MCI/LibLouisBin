@@ -2,8 +2,12 @@
 # This script will compile the liblouis shared libraries.
 # For linux libraries, this script can be run natively.
 # Windows libraries require a gcc based crosscompiler toolchain.
-# For OSX, this script has to run natively on a OSX machine.
-    # Cross compiling may be used here too in the future.
+# For OSX a clang based crosscompiler toolchain is used.
+
+# Currently, this script runs on a Arch Linux machine with the following packages installed:
+# core/gcc 9.1.0-2
+# aur/mingw-w64-gcc-bin 9.2.0-1
+# aur/apple-darwin-osxcross 325.16efae8-1
 
 BUILD_SCRIPT_DIR="$(dirname "$(readlink -f "$0")")" # The path containing this script
 TEMP_DIR="$(dirname "$(mktemp -u)")/libloius_builds" # Temporary source tree location
