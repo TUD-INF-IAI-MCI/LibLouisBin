@@ -1,7 +1,7 @@
 # liblouis_bin
 
 This repo contains compiled liblouis shared library artifacts.
-These libraries are intended for use in the [BraillePlot](https://gitlab.hrz.tu-chemnitz.de/s9444737--tu-dresden.de/brailleplot) project.
+These libraries are intended for use in the [BraillePlot](https://github.com/TUD-INF-IAI-MCI/BraillePlot) project.
 
 ## Project structure
 
