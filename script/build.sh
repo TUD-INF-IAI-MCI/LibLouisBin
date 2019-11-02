@@ -57,7 +57,7 @@ compile_gcc() {
     mkdir -p "$TEMP_DIR/$SUB_DIR/src"
     cd "$TEMP_DIR/$SUB_DIR/src"
     tar xf "$TEMP_DIR/$LIBLOUIS_ARCHIVE" --strip-components 1
-    ./configure --prefix="$TEMP_DIR/$SUB_DIR/install" --host="$CROSS_ID"
+    ./configure --prefix="$TEMP_DIR/$SUB_DIR/install" --host="$CROSS_ID" --without-yaml
     make clean
     make install # "$MAKE_FLAGS" # mingw64 currently has some problems with multiple jobs (-j8), so this is currently disabled
 
