@@ -51,7 +51,7 @@ compile_gcc() {
 
     echo ""
     echo "--------------------------------------------------------------------------------"
-    echo "Staring build for $CROSS_ID"
+    echo "Starting build for $CROSS_ID"
     echo "--------------------------------------------------------------------------------"
 
     mkdir -p "$TEMP_DIR/$SUB_DIR/src"
